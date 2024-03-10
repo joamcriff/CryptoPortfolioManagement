@@ -92,7 +92,9 @@ const CryptoTable = () => {
               <th>Purchase Price</th>
               <th>Current Price</th>
               <th>Profit/Loss</th>
-              <th>Action</th>
+              <th style={{ display: "flex", justifyContent: "center" }}>
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
