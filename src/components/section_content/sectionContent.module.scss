@@ -1,0 +1,33 @@
+.main_portfolio {
+  width: 80%;
+  padding: 24px;
+  .information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .port1 {
+      .port1_title {
+        font-size: 16px;
+        color: #616e85;
+        font-weight: 500;
+      }
+      .port1_price {
+        margin-top: 8px;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 130%;
+      }
+    }
+    .button {
+      color: #fff;
+      background-color: #3861fb;
+      height: 32px;
+      line-height: 32px;
+      font-weight: 600;
+      padding: 0px 7px;
+      font-size: 12px;
+      border-radius: 0.66em;
+      cursor: pointer;
+    }
+  }
+}

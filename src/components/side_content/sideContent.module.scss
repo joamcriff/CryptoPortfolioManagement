@@ -1,0 +1,22 @@
+.portfolio {
+  width: 20%;
+  padding: 24px;
+  font-weight: 600;
+  .port1 {
+    padding: 10px;
+  }
+  .port2 {
+    padding: 10px;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 4px;
+    background: #eff2f5;
+    .price {
+      font-weight: 400;
+    }
+  }
+}
