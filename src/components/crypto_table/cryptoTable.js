@@ -6,12 +6,16 @@ import axios from "axios";
 import EditCrypto from "../EditCryptoForm/editCrypto";
 import { MdOutlineDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { updateValue } from "../../store/price/slicePrice";
 
 const CryptoTable = () => {
   const [portfolioData, setPortfolioData] = useState([]);
   const [currentPrice, setCurrentPrice] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const portfolioData1 = loadPortfolioData();
@@ -27,17 +31,29 @@ const CryptoTable = () => {
         const profit =
           crypto.quantity *
           (currentPrice.data[crypto.id]?.usd - crypto.purchasePrice);
-        const total = crypto.quantity * currentPrice.data[crypto.id]?.usd;
+        const totalCurrent =
+          crypto.quantity * currentPrice.data[crypto.id]?.usd;
         return {
           ...crypto,
           currentPrice: currentPrice.data[crypto.id]?.usd || 0,
           profitLoss: profit,
-          totalPrice: total,
+          totalPrice: totalCurrent,
         };
       })
     );
     setCurrentPrice(updatedPortfolioData);
   };
+
+  useEffect(() => {
+    const totalPrice = () => {
+      let total = 0;
+      for (const crypto of currentPrice) {
+        total += crypto.totalPrice || 0;
+      }
+      return total;
+    };
+    dispatch(updateValue(totalPrice()));
+  }, [currentPrice]);
 
   // Sử dụng useMemo để lưu trữ kết quả fetchCryptoPrices khi portfolioData thay đổi
   const memoizedFetchCryptoPrices = useMemo(

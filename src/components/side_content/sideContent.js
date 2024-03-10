@@ -1,30 +1,9 @@
 import React from "react";
 import styles from "./sideContent.module.scss";
-import { useEffect, useState } from "react";
-import { loadPortfolioData } from "../../utils/storage";
+import { useSelector } from "react-redux";
 
 const SideContent = () => {
-  const [portfolioData, setPortfolioData] = useState([]);
-  const [price, setPrice] = useState(0);
-  useEffect(() => {
-    const portfolioData1 = loadPortfolioData();
-    setPortfolioData(portfolioData1);
-  }, []);
-
-  useEffect(() => {
-    // Tính tổng price từ mảng portfolioData
-    const calculateTotalPrice = () => {
-      let total = 0;
-      for (const crypto of portfolioData) {
-        total += crypto.price || 0;
-      }
-      return total;
-    };
-
-    // Cập nhật state totalPrice
-    setPrice(calculateTotalPrice());
-  }, [portfolioData]);
-
+  const price = useSelector((state) => state.mySlice.price);
   return (
     <div className={styles.portfolio}>
       <div className={styles.port1}>My Portfolio</div>

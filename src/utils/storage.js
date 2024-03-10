@@ -18,7 +18,7 @@ export const loadPortfolioData = () => {
   try {
     const serializedData = localStorage.getItem("cryptoPortfolio");
     if (serializedData === null) {
-      return undefined;
+      return [];
     }
     return JSON.parse(serializedData);
   } catch (error) {
